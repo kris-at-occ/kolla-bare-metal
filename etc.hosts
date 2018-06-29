@@ -1,0 +1,10 @@
+127.0.0.1 localhost
+10.0.0.11 controller1
+10.0.0.12 controller2
+#10.0.0.13  controller3
+#...
+
+10.0.0.31 compute001
+#10.0.0.32  compute002
+#10.0.0.33  compute003
+#...
