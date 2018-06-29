@@ -1,8 +1,8 @@
 #! /bin/sh
 
-apt update
-apt install -y python python-simplejson
-apt install -y qemu-kvm
+DEBIAN_FRONTEND=noninteractive apt update
+DEBIAN_FRONTEND=noninteractive apt install -y python python-simplejson
+DEBIAN_FRONTEND=noninteractive apt install -y qemu-kvm
 
 echo "configfs" >> /etc/modules
 update-initramfs -u
