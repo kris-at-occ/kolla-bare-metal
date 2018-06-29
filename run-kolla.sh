@@ -60,24 +60,24 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 echo 'run-kolla.sh: Running sudo kolla-genpwd'
 sudo kolla-genpwd
 
-echo 'run-kolla.sh: Running sudo kolla-ansible -i multinode bootstrap-servers'
-sudo kolla-ansible -i multinode bootstrap-servers
+echo 'run-kolla.sh: Running kolla-ansible -i multinode bootstrap-servers'
+kolla-ansible -i multinode bootstrap-servers
 
 if [ $? -ne 0 ]; then
   echo "Bootstrap servers failed"
   exit $?
 fi
 
-echo 'run-kolla.sh: Running sudo kolla-ansible -i multinode prechecks'
-sudo kolla-ansible -i multinode prechecks
+echo 'run-kolla.sh: Running kolla-ansible -i multinode prechecks'
+kolla-ansible -i multinode prechecks
 
 if [ $? -ne 0 ]; then
   echo "Prechecks failed"
   exit $?
 fi
 
-echo 'run-kolla.sh: Running sudo kolla-ansible -i multinode deploy'
-sudo kolla-ansible -i multinode deploy
+echo 'run-kolla.sh: Running kolla-ansible -i multinode deploy'
+kolla-ansible -i multinode deploy
 
 if [ $? -ne 0 ]; then
   echo "Deploy failed"
