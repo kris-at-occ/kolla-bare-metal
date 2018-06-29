@@ -2,35 +2,61 @@
 # additional groups are for more control of the environment.
 [control]
 # These hostname must be resolvable from your deployment host
-controller ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
+#
+# kris-at-occ: This inventory file assumes following controller node naming convention:
+# kris-at-occ:   word controller followed by 1 digit node number, for example controller2
+# kris-at-occ: This inventory file installs controller containers on 2 nodes: controller1 & controller2
+# kris-at-occ: If you want 3 or more controller set up, edit line below: controller[1:3]....
+#
+controller[1:2] ansible_ssh_user=openstack ansible_become=True ansible_private_key_file=/home/openstack/.ssh/id_rsa
 
 # The above can also be specified as follows:
 #control[01:03]     ansible_user=kolla
 
 # The network nodes are where your l3-agent and loadbalancers will run
 # This can be the same as a host in the control group
+#
+# kris-at-occ: This inventory file installs network containers on 2 controller nodes: controller1 & controller2
+# kris-at-occ: If you want 3 or more controller set up, edit line below: controller[1:3]....
+#
 [network]
-controller ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
+controller[1:2] ansible_ssh_user=openstack ansible_become=True ansible_private_key_file=/home/openstack/.ssh/id_rsa
 
+#
+# kris-at-occ: This inventory file installs assumes all compute nodes to be directly connected to provider flat network
+# kris-at-occ: If you want some compute nodes to be "inner compute", add them below
+#
 [inner-compute]
 
+#
+# kris-at-occ: This inventory file assumes following compute node naming convention:
+# kris-at-occ:   word compute followed by 3 digit node number, for example compute873
+# kris-at-occ: This inventory file installs one compute node: compute001
+# kris-at-occ: If you want more compute nodes, edit the line below: for example compute[001:012]
+#
 [external-compute]
-compute1 ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
-compute2 ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
+compute[001:001] ansible_ssh_user=openstack ansible_become=True ansible_private_key_file=/home/openstack/.ssh/id_rsa
 
 [compute:children]
 inner-compute
 external-compute
 
 [monitoring]
-controller ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
+controller1 ansible_ssh_user=openstack ansible_become=True ansible_private_key_file=/home/openstack/.ssh/id_rsa
 
 # When compute nodes and control nodes use different interfaces,
 # you can specify "api_interface" and other interfaces like below:
 #compute01 neutron_external_interface=eth0 api_interface=em1 storage_interface=em1 tunnel_interface=em1
 
+#
+# kris-at-occ: kolla-bare-metal installs storage node with LVM backend (defined in globals.yml),
+# kris-at-occ:   this is good for demonstration only
+# kris-at-occ: For production deployment use other, more robust backend (Ceph, NetApp, etc.)
+# kris-at-occ:   edit storage section below and globals.yml
+# kris-at-occ: This inventory file installs storage backend containers on first compute node, i.e. compute001
+#
 [storage]
-compute1 ansible_ssh_user=kris ansible_become=True ansible_private_key_file=/home/kris/.ssh/id_rsa
+compute001 ansible_ssh_user=openstack ansible_become=True ansible_private_key_file=/home/openstack/.ssh/id_rsa
 
 [deployment]
 localhost       ansible_connection=local
