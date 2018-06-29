@@ -31,8 +31,7 @@ ssh openstack@controller1 "sudo bash /home/openstack/controller_setup.sh"
 echo 'run-kolla.sh: Running ssh openstack@controller2 "sudo bash /home/openstack/controller_setup.sh"'
 ssh openstack@controller2 "sudo bash /home/openstack/controller_setup.sh"
 echo 'run-kolla.sh: Running ssh openstack@compute001 “sudo bash /home/openstack/compute_setup.sh”'
-ssh openstack@compute001 “sudo bash /home/openstack/compute_setup.sh”
-
+ssh openstack@compute001 "sudo bash /home/openstack/compute_setup.sh"
 
 echo 'run-kolla.sh: Running sudo pip install ansible==2.5.2'
 sudo pip install ansible==2.5.2
