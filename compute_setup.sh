@@ -1,5 +1,6 @@
 #! /bin/sh
 
+apt update
 apt install -y python python-simplejson
 apt install -y qemu-kvm
 
