@@ -12,26 +12,26 @@ rm -f /home/openstack/.ssh/id_rsa.pub
 echo 'run-kolla.sh: Running ssh-keygen -t rsa'
 ssh-keygen -t rsa
 
-echo 'run-kolla.sh: Running ssh-copy-id kris@controller1'
-ssh-copy-id kris@controller1
-echo 'run-kolla.sh: Running ssh-copy-id kris@controller2'
-ssh-copy-id kris@controller2
-echo 'run-kolla.sh: Running ssh-copy-id kris@compute001'
-ssh-copy-id kris@compute001
+echo 'run-kolla.sh: Running ssh-copy-id openstack@controller1'
+ssh-copy-id openstack@controller1
+echo 'run-kolla.sh: Running ssh-copy-id openstack@controller2'
+ssh-copy-id openstack@controller2
+echo 'run-kolla.sh: Running ssh-copy-id openstack@compute001'
+ssh-copy-id openstack@compute001
 
-echo 'run-kolla.sh: Running scp controller_setup.sh controller1:/home/kris/controller_setup.sh'
-scp controller_setup.sh controller1:/home/kris/controller_setup.sh
-echo 'run-kolla.sh: Running scp controller_setup.sh controller2:/home/kris/controller_setup.sh'
-scp controller_setup.sh controller2:/home/kris/controller_setup.sh
-echo 'run-kolla.sh: Running scp compute_setup.sh compute001:/home/kris/compute_setup.sh'
-scp compute_setup.sh compute001:/home/kris/compute_setup.sh
+echo 'run-kolla.sh: Running scp controller_setup.sh openstack@controller1:/home/openstack/controller_setup.sh'
+scp controller_setup.sh openstack@controller1:/home/openstack/controller_setup.sh
+echo 'run-kolla.sh: Running scp controller_setup.sh openstack@controller2:/home/openstack/controller_setup.sh'
+scp controller_setup.sh openstack@controller2:/home/openstack/controller_setup.sh
+echo 'run-kolla.sh: Running scp compute_setup.sh openstack@compute001:/home/openstack/compute_setup.sh'
+scp compute_setup.sh openstack@compute001:/home/openstack/compute_setup.sh
 
-echo 'run-kolla.sh: Running ssh kris@controller1 "sudo bash /home/kris/controller_setup.sh"'
-ssh kris@controller1 "sudo bash /home/kris/controller_setup.sh"
-echo 'run-kolla.sh: Running ssh kris@controller2 "sudo bash /home/kris/controller_setup.sh"'
-ssh kris@controller2 "sudo bash /home/kris/controller_setup.sh"
-echo 'run-kolla.sh: Running ssh kris@compute001 “sudo bash /home/kris/compute_setup.sh”'
-ssh kris@compute001 “sudo bash /home/kris/compute_setup.sh”
+echo 'run-kolla.sh: Running ssh openstack@controller1 "sudo bash /home/openstack/controller_setup.sh"'
+ssh openstack@controller1 "sudo bash /home/openstack/controller_setup.sh"
+echo 'run-kolla.sh: Running ssh openstack@controller2 "sudo bash /home/openstack/controller_setup.sh"'
+ssh openstack@controller2 "sudo bash /home/openstack/controller_setup.sh"
+echo 'run-kolla.sh: Running ssh openstack@compute001 “sudo bash /home/openstack/compute_setup.sh”'
+ssh openstack@compute001 “sudo bash /home/openstack/compute_setup.sh”
 
 
 echo 'run-kolla.sh: Running sudo pip install ansible==2.5.2'
@@ -53,7 +53,7 @@ fi
 echo 'run-kolla.sh: Running sudo cp -r /usr/local/share/kolla-ansible/etc_examples/kolla /etc/kolla'
 sudo cp -r /usr/local/share/kolla-ansible/etc_examples/kolla /etc/kolla
 echo 'run-kolla.sh: Running sudo cp globals.yml /etc/kolla'
-cp globals.yml /etc/kolla
+sudo cp globals.yml /etc/kolla
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 
