@@ -1,6 +1,6 @@
 #! /bin/sh
 
-apt install -y python python-simplejson glances
+apt install -y python python-simplejson
 apt install -y qemu-kvm
 
 echo "configfs" >> /etc/modules
