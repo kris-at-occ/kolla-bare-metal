@@ -51,7 +51,7 @@ write_files:
          </body>
          </html>
          EOF
-         echo "$localipv4 $hostname >> /etc/hosts
+         echo "$localipv4 $hostname" >> /etc/hosts
     owner: root:root
     path: /tmp/start_me_up.sh
     permissions: '0700'
