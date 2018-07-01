@@ -3,6 +3,7 @@
 
 packages:
   - apache2
+  - mysql-client
   - rpl
   - php
   - libapache2-mod-php
@@ -16,7 +17,6 @@ packages:
   - php-recode
   - php-tidy
   - php-xmlrpc
-  - mariadb-client
 
 write_files:
   - content: |
