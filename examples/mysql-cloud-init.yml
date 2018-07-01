@@ -10,8 +10,10 @@ write_files:
          localipv4=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4)
          subnet_address=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4 | cut -f 1-3 -d '.')
          cat <<-EOF | mysql
-         create user 'wordpressuser'@'$subnet_address.%' identified by 'openstack';
-         grant all on wordpressdb.* to 'wordpressuser'@'*';
+         # create user 'wordpressuser'@'$subnet_address.%' identified by 'openstack';
+         reate user 'wordpressuser'@'%' identified by 'openstack';
+         # grant all on wordpressdb.* to 'wordpressuser'@'$subnet_address.%';
+         grant all on wordpressdb.* to 'wordpressuser'@'%';
          flush privileges;
          EOF
          echo "$localipv4 $hostname" >> /etc/hosts
