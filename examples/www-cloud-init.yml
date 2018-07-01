@@ -2,7 +2,7 @@
 # vim: syntax=yaml
 
 packages:
-  - nginx
+  - apache2
   - rpl
   - php
   - libapache2-mod-php
@@ -32,6 +32,12 @@ write_files:
          rpl username_here wordpressuser /var/www/html/wordpress/wp-config.php
          rpl password_here openstack /var/www/html/wordpress/wp-config.php
          rpl localhost $subnet_address.250 /var/www/html/wordpress/wp-config.php
+         sudo chown -R www-data:www-data /var/www/html/
+         sudo chmod -R 755 /var/www/html/
+         rm -rf /var/www/html/index.html
+         a2enmod headers
+         a2enmod rewrite
+         systemctl restart apache2
     owner: root:root
     path: /tmp/start_me_up.sh
     permissions: '0700'
