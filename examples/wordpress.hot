@@ -220,8 +220,8 @@ resources:
   floating_ip:
         type: OS::Neutron::FloatingIP
         properties:
-        floating_network: { get_param: public_network }
-        port_id: { get_attr: [loadbalancer, vip_port_id ]}
+          floating_network_id: { get_param: public_network }
+          port_id: { get_attr: [loadbalancer, vip_port_id ]}
 
 outputs:
   # declaration of output parameters
