@@ -71,7 +71,6 @@ server2:
             From nobody Fri Dec  9 00:31:04 2016
             Content-Type: multipart/mixed; boundary="==BOUNDARY=="
             MIME-Version: 1.0
-            
             --==BOUNDARY==
             MIME-Version: 1.0
             Content-Type: text/x-shellscript; charset="us-ascii"
