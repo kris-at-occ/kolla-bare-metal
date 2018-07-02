@@ -43,7 +43,7 @@ resources:
       security_groups: [{ get_resource: security_group }]
       key_name: { get_param: key_name }
       networks:
-        - network: { get_resource: network }
+        - network: { get_param: network }
       user_data_format: RAW
       user_data:
         str_replace:
@@ -64,7 +64,7 @@ resources:
       security_groups: [{ get_resource: security_group }]
       key_name: { get_param: key_name }
       networks:
-        - network: { get_resource: network }
+        - network: { get_param: network }
       user_data_format: RAW
       user_data:
         str_replace:
