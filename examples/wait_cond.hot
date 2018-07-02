@@ -37,7 +37,6 @@ resources:
   server1:
     type: OS::Nova::Server
     properties:
-      name: server1
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
       security_groups: [{ get_resource: security_group }]
@@ -57,12 +56,11 @@ resources:
 server2:
     type: OS::Nova::Server
     properties:
-      name: server2
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
       security_groups: [{ get_resource: security_group }]
       key_name: { get_param: key_name }
-        networks:
+      networks:
         - network: { get_resource: wordpress_network }
       user_data_format: RAW
       user_data:
