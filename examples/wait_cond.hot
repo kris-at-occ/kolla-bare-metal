@@ -54,6 +54,7 @@ resources:
           params:
             wc_notify: { get_attr: [wait_handle, curl_cli] }
 
+
   server2:
     type: OS::Nova::Server
     properties:
