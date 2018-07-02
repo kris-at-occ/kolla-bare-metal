@@ -18,11 +18,6 @@ parameters:
     description: Server Flavor
     constraints:
       - custom_constraint: nova.flavor
-  security_group:
-    type: string
-    description: Security Group for Web Server
-    constraints:
-      - custom_constraint: neutron.security_group
 
 resources:
   wait_condition:
@@ -40,7 +35,7 @@ resources:
     properties:
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
-      security_groups: [{ get_param: security_group }]
+      security_groups: [default]
       key_name: { get_param: key_name }
       networks:
         - network: { get_param: network }
@@ -61,7 +56,7 @@ resources:
     properties:
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
-      security_groups: [{ get_param: security_group }]
+      security_groups: [default]
       key_name: { get_param: key_name }
       networks:
         - network: { get_param: network }
