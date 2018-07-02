@@ -227,7 +227,7 @@ outputs:
   # declaration of output parameters
   lburl:
     description: URL of the loadbalancer
-   value:
+    value:
       str_replace:
         template: http://IP_ADDRESS:PORT/wordpress/
         params:
