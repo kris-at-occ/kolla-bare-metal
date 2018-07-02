@@ -118,7 +118,7 @@ resources:
           flavor: { get_param: web_server_flavor }
           security_groups: [{ get_resource: web_secgroup }]
           user_data_format: RAW
-          user_data: |
+          user_data:
             str_replace:
               template: |
                 From nobody Fri Dec  9 00:31:04 2016
@@ -157,7 +157,7 @@ resources:
           flavor: { get_param: web_server_flavor }
           security_groups: [{ get_resource: web_secgroup }]
           user_data_format: RAW
-          user_data: |
+          user_data:
             str_replace:
               template: |
                 From nobody Fri Dec  9 00:31:04 2016
