@@ -168,6 +168,7 @@ resources:
               params:
 #                db_server_ip: { get_attr: [db_server, networks, wordpress_network, 0] ] }
                 db_server_ip: { get_attr: [ db_server, first_address ]}
+          key_name: { get_param: key_name }
           networks:
             - network: { get_resource: wordpress_network }
 
