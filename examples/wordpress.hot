@@ -100,7 +100,6 @@ resources:
   db_server:
         type: OS::Nova::Server
         properties:
-          name: "db_server"
           image: { get_param: db_server_image }
           flavor: { get_param: db_server_flavor }
           security_groups: [{ get_resource: db_secgroup }]
@@ -115,7 +114,6 @@ resources:
   web_server1:
         type: OS::Nova::Server
         properties:
-          name: "web_server1"
           image: { get_param: web_server_image }
           flavor: { get_param: web_server_flavor }
           security_groups: [{ get_resource: web_secgroup }]
@@ -155,7 +153,6 @@ resources:
   web_server2:
         type: OS::Nova::Server
         properties:
-          name: "web_server2"
           image: { get_param: web_server_image }
           flavor: { get_param: web_server_flavor }
           security_groups: [{ get_resource: web_secgroup }]
