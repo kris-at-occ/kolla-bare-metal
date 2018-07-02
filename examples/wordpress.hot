@@ -88,15 +88,6 @@ resources:
               port_range_min: 3306
               port_range_max: 3306
 
-  db_server_port:
-        type: OS::Neutron::Port
-        properties:
-          network_id: { get_resource: wordpress_network }
-          security_groups: [ { get_resource: db_secgroup } ]
-          fixed_ips:
-                - subnet_id: { get_resource: wordpress_subnet }
-                - ip_address: 192.168.222.250
-   
   db_server:
         type: OS::Nova::Server
         properties:
@@ -109,7 +100,7 @@ resources:
             https://raw.githubusercontent.com/kris-at-occ/kolla-bare-metal/master/examples/mysql-cloud-init.yml
           key_name: { get_param: key_name }
           networks:
-            - port: { get_resource: db_server_port }
+            - network: { get_resource: wordpress_network }
 
   web_server1:
         type: OS::Nova::Server
