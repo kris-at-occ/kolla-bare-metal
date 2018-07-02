@@ -23,7 +23,7 @@ write_files:
   - content: |
          hostname=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/hostname | cut -f 1 -d '.')
          localipv4=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4)
-         db_server=$(curl -sS http://169.254.169.254/openstack/2012-08-10/meta_data.json | grep db_server_ip | jshon -e meta -e db_server_ip | sed 's/^"//' | sed s'/.$//')
+         db_server=$(curl -sS http://169.254.169.254/openstack/2012-08-10/meta_data.json | jshon -e meta -e db_server_ip | sed 's/^"//' | sed s'/.$//')
          echo "$localipv4 $hostname" >> /etc/hosts
          cd /var/www/html
          wget http://wordpress.org/latest.tar.gz
