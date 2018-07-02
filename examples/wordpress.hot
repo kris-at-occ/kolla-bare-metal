@@ -192,21 +192,21 @@ resources:
   pool:
         type: OS::Neutron::LBaaS::Pool
         properties:
-        lb_algorithm: ROUND_ROBIN
-        protocol: HTTP
-        listener: { get_resource: listener }
+          lb_algorithm: ROUND_ROBIN
+          protocol: HTTP
+          listener: { get_resource: listener }
 
   listener:
         type: OS::Neutron::LBaaS::Listener
         properties:
-        loadbalancer: { get_resource: loadbalancer }
-        protocol: HTTP
-        protocol_port: 80
+          loadbalancer: { get_resource: loadbalancer }
+          protocol: HTTP
+          protocol_port: 80
 
   loadbalancer:
         type: OS::Neutron::LBaaS::LoadBalancer
         properties:
-        vip_subnet: { get_resource: wordpress_subnet }
+          vip_subnet: { get_resource: wordpress_subnet }
 
   floating_ip:
         type: OS::Neutron::FloatingIP
