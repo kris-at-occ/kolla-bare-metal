@@ -109,7 +109,7 @@ resources:
             https://raw.githubusercontent.com/kris-at-occ/kolla-bare-metal/master/examples/mysql-cloud-init.yml
           key_name: { get_param: key_name }
           networks:
-          - port: { get_resource: db_server_port }
+            - port: { get_resource: db_server_port }
 
   web_server1:
         type: OS::Nova::Server
@@ -140,7 +140,7 @@ resources:
                 db_server_ip: { get_attr: [ db_server, first_address ]}
           key_name: { get_param: key_name }
           networks:
-          - network: { get_resource: wordpress_network }
+            - network: { get_resource: wordpress_network }
 
   pool_member1:
         type: OS::Neutron::LBaaS::PoolMember
@@ -178,7 +178,7 @@ resources:
 #                db_server_ip: { get_attr: [db_server, networks, wordpress_network, 0] ] }
                 db_server_ip: { get_attr: [ db_server, first_address ]}
           networks:
-          - network: { get_resource: wordpress_network }
+            - network: { get_resource: wordpress_network }
 
   pool_member2:
         type: OS::Neutron::LBaaS::PoolMember
