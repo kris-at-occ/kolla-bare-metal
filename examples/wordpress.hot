@@ -119,7 +119,8 @@ resources:
                 MIME-Version: 1.0
                 Content-Type: text/x-shellscript; charset="us-ascii"
                 #!/bin/bash
-                echo "$db_server_ip" > /tmp/db_server
+                echo "$db_server_ip" >> /tmp/db_server
+                echo "This is /$db_server_ip/ string" > /tmp/log1
                 --==BOUNDARY==
                 MIME-Version: 1.0
                 Content-Type: text/x-include-url; charset="us-ascii"
@@ -158,7 +159,8 @@ resources:
                 MIME-Version: 1.0
                 Content-Type: text/x-shellscript; charset="us-ascii"
                 #!/bin/bash
-                echo "$db_server_ip" > /tmp/db_server
+                echo "$db_server_ip" >> /tmp/db_server
+                echo "This is /$db_server_ip/ string" > /tmp/log1
                 --==BOUNDARY==
                 MIME-Version: 1.0
                 Content-Type: text/x-include-url; charset="us-ascii"
