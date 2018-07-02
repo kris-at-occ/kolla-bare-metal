@@ -40,7 +40,7 @@ resources:
     properties:
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
-      security_groups: [{ get_resource: security_group }]
+      security_groups: [{ get_param: security_group }]
       key_name: { get_param: key_name }
       networks:
         - network: { get_param: network }
@@ -61,7 +61,7 @@ resources:
     properties:
       image: { get_param: server_image }
       flavor: { get_param: server_flavor }
-      security_groups: [{ get_resource: security_group }]
+      security_groups: [{ get_param: security_group }]
       key_name: { get_param: key_name }
       networks:
         - network: { get_param: network }
