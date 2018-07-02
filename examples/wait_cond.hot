@@ -54,6 +54,8 @@ resources:
           params:
             wc_notify: { get_attr: [wait_handle, curl_cli] }
 
+# second server will get the wait_condition notification
+
   server2:
     type: OS::Nova::Server
     properties:
