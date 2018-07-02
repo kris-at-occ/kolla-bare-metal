@@ -18,6 +18,11 @@ parameters:
     description: Server Flavor
     constraints:
       - custom_constraint: nova.flavor
+  key_name:
+    type: string
+    description: Server Keypair
+    constraints:
+      - custom_constraint: nova.keypair
 
 resources:
   wait_condition:
