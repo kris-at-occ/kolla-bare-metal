@@ -22,7 +22,7 @@ write_files:
   - content: |
          hostname=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/hostname | cut -f 1 -d '.')
          localipv4=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4)
-         subnet_address=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4 | cut -f 1-3 -d '.')
+         db_server=$(cat /tmp/db_server)
          echo "$localipv4 $hostname" >> /etc/hosts
          cd /var/www/html
          wget http://wordpress.org/latest.tar.gz
@@ -31,7 +31,7 @@ write_files:
          rpl database_name_here wordpressdb /var/www/html/wordpress/wp-config.php
          rpl username_here wordpressuser /var/www/html/wordpress/wp-config.php
          rpl password_here openstack /var/www/html/wordpress/wp-config.php
-         rpl localhost $subnet_address.250 /var/www/html/wordpress/wp-config.php
+         rpl localhost $db_server /var/www/html/wordpress/wp-config.php
          sudo chown -R www-data:www-data /var/www/html/
          sudo chmod -R 755 /var/www/html/
          rm -rf /var/www/html/index.html
