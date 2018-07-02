@@ -1,5 +1,6 @@
 heat_template_version: pike
 
+
 parameters:
 
   network:
@@ -53,7 +54,7 @@ resources:
           params:
             wc_notify: { get_attr: [wait_handle, curl_cli] }
 
-server2:
+  server2:
     type: OS::Nova::Server
     properties:
       image: { get_param: server_image }
