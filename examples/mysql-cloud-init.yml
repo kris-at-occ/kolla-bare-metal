@@ -18,7 +18,7 @@ write_files:
          grant all on wordpressdb.* to 'wordpressuser'@'%';
          flush privileges;
          EOF
-         rpl 127.0.0.1 $subnet_address.250 /etc/mysql/mariadb.conf.d/50-server.cnf
+         rpl 127.0.0.1 $localipv4 /etc/mysql/mariadb.conf.d/50-server.cnf
          service mysql restart
          echo "$localipv4 $hostname" >> /etc/hosts
     owner: root:root
