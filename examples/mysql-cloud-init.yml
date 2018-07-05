@@ -13,13 +13,6 @@ packages:
 
 write_files:
   - content: |
-         mkdir -p /var/lib/mysql
-         mkfs.ext4 /dev/vdb
-         mount /dev/vdb /var/lib/mysql
-    owner: root:root
-    path: /tmp/bootcmd.sh
-    permissions: '0700'
-  - content: |
          hostname=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/hostname | cut -f 1 -d '.')
          localipv4=$(curl -ss http://169.254.169.254/2009-04-04/meta-data/local-ipv4)
          cat <<-EOF | mysql
@@ -32,11 +25,8 @@ write_files:
          service mysql restart
          echo "$localipv4 $hostname" >> /etc/hosts
     owner: root:root
-    path: /tmp/runcmd.sh
+    path: /tmp/start_me_up.sh
     permissions: '0700'
 
-bootcmd:
-  - sh /tmp/bootcmd.sh
-
 runcmd:
-  - sh /tmp/runcmd.sh
+  - sh /tmp/start_me_up.sh
