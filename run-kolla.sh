@@ -4,6 +4,9 @@ export LC_ALL=C
 export LC_CTYPE="UTF-8",
 export LANG="en_US.UTF-8"
 
+# ---- PART ONE ------
+# Configure SSH connectivity from 'deployment' to Target Hosts
+
 echo 'run-kolla.sh: Cleaning directory /home/openstack/.ssh/'
 rm -f /home/openstack/.ssh/known_hosts
 rm -f /home/openstack/.ssh/id_rsa
@@ -33,6 +36,9 @@ ssh openstack@controller2 "sudo bash /home/openstack/controller_setup.sh"
 echo 'run-kolla.sh: Running ssh openstack@compute001 “sudo bash /home/openstack/compute_setup.sh”'
 ssh openstack@compute001 "sudo bash /home/openstack/compute_setup.sh"
 
+# ---- PART TWO ----
+# Install Ansible and Kolla-Ansible
+
 echo 'run-kolla.sh: Running sudo pip install ansible==2.5.2'
 sudo pip install ansible==2.5.2
 
@@ -49,10 +55,16 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 
+# ---- PART THREE ----
+# Prepare Deployment Parameter Files
+
 echo 'run-kolla.sh: Running sudo cp -r /usr/local/share/kolla-ansible/etc_examples/kolla /etc/kolla'
 sudo cp -r /usr/local/share/kolla-ansible/etc_examples/kolla /etc/kolla
 echo 'run-kolla.sh: Running sudo cp globals.yml /etc/kolla'
 sudo cp globals.yml /etc/kolla
+
+# ---- PART FOUR ----
+# Run Kolla-Ansible Playbooks
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 
@@ -85,6 +97,9 @@ fi
 
 echo 'run-kolla.sh: Running sudo kolla-ansible -i multinode post-deploy'
 sudo kolla-ansible post-deploy
+
+# ---- PART FIVE ----
+# Install OpenStack Client and "populate" OpenStack Deployment with Image, Flavors & Networks
 
 echo 'run-kolla.sh: Running sudo pip install python-openstackclient'
 sudo pip install python-openstackclient
