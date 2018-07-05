@@ -1,6 +1,12 @@
 #cloud-config
 # vim: syntax=yaml
 
+# Set password module works for default account - 'ubuntu' in case of Ubuntu Cloud Images
+# While it is a nice to set a password in demo systems, this is a potential security threat, DO NOT DO THIS in production systems
+password: $6$rounds=4096$9aqHXgHRwyFPNCz3$1IR5TIIleTc3S.7UbF8MCmeDXThhz2fNr7YFerbW5ybuvzxlQezqiDh2lGFrV3VXMuOPxeC6.Q8ZJ1jOv97fE1
+chpasswd:
+    expire: false
+
 packages:
   - apache2
   - mysql-client
