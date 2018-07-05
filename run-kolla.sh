@@ -43,7 +43,10 @@ echo 'run-kolla.sh: Running sudo cp init-runonce /usr/local/share/kolla-ansible/
 sudo cp init-runonce /usr/local/share/kolla-ansible/init-runonce
 echo 'run-kolla.sh: Running cd /usr/local/share/kolla-ansible'
 cd /usr/local/share/kolla-ansible
-echo 'run-kolla.sh: Running sudo ". /etc/kolla/admin-openrc.sh; ./init-runonce"'
-sudo ". /etc/kolla/admin-openrc.sh; ./init-runonce"
+echo 'run-kolla.sh: Running sudo ./init-runonce'
+cat <<-EOF | sudo su
+. /etc/kolla/admin-openrc.sh
+./init-runonce
+EOF
 echo "Horizon available at 10.0.0.10, user 'admin', password below:"
 grep keystone_admin_password /etc/kolla/passwords.yml
